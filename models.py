@@ -4,9 +4,10 @@ db = SQLAlchemy()
 
 
 
-class Example(db.Model):
-    __tablename__ = 'examples'
-    id = db.Column(db.Integer, primary_key=True)
+class User(db.Model):
+    __tablename__ = 'users'
+    address = db.Column(db.String, primary_key=True, nullable=False)
+    active = db.Column(db.Boolean, default=True)
 
     def __repr__(self):
-        return '<Example {}>'.format(self.id)
+        return '<User {}>'.format(self.address)
