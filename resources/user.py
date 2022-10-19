@@ -47,6 +47,6 @@ class Login(Resource):
 class Me(Resource):
     @token_required
     @marshal_with(UserSchema())
-    def get(self, user):
-        return user
+    def get(self, **kwargs):
+        return kwargs.get('current_user')
 
