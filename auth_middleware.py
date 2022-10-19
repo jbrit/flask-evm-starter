@@ -1,7 +1,7 @@
 from functools import wraps
 import jwt
-from flask import request, abort
-from flask import current_app
+from flask import request, abort, current_app
+
 import models
 
 def token_required(f):
@@ -20,7 +20,7 @@ def token_required(f):
             data=jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])
             current_user = models.db.get_or_404(models.User, data["address"])
             # active user?
-            if not current_user["active"]:
+            if not current_user.active:
                 abort(403)
         except Exception as e:
             return {

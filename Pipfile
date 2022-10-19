@@ -12,6 +12,7 @@ flask-migrate = "*"
 marshmallow = "*"
 pyjwt = "*"
 siwe = "*"
+flask-cors = "*"
 
 [dev-packages]
 

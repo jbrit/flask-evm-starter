@@ -1,7 +1,7 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_restful import abort
 from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
 from webargs.flaskparser import parser
 from config import app_config
 from views import api_blueprint, docs
@@ -21,6 +21,7 @@ migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
+    cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
     app.config.update(app_config)
     app.register_blueprint(api_blueprint)
     db.init_app(app)
