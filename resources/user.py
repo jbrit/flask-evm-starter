@@ -40,7 +40,8 @@ class Login(Resource):
         if not user.active:
             abort(403)
 
-        return {"access_token" : jwt.encode({'address': address}, current_app.config['SECRET_KEY'])}
+        token = {"access_token" : jwt.encode({'address': address}, current_app.config['SECRET_KEY'], algorithm='HS256')}
+        return token
 
 
 class Me(Resource):
